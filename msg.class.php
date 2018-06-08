@@ -29,6 +29,7 @@ class msg
             $arr[$key]['title'] = $data[$key]['title'];
             $arr[$key]['author'] = $data[$key]['author'];
             $arr[$key]['message'] = $data[$key]['message'];
+            $arr[$key]['id'] = $data[$key]['id'];
         }
         return $arr;
     }
