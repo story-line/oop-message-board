@@ -9,7 +9,7 @@
 
 class user
 {
-    public function login($pdo,$name,$pwd)
+    public function login($pdo, $name, $pwd)
     {
         $sql = "select * from user where name = '$name'";
         $data = $pdo->query($sql)->fetchAll();
@@ -18,17 +18,24 @@ class user
             $arr['name'] = $data[$key]['name'];
             $arr['password'] = $data[$key]['password'];
         }
-        if($arr == null){
+        if ($arr == null) {
             return 1;
-        }elseif($arr['password'] == $pwd){
+        } elseif ($arr['password'] == $pwd) {
             return 2;
-        }else{
+        } else {
             return 3;
         }
     }
-    public function register($pdo,$name,$pwd)
+
+    public function register($pdo, $table_name, $arr)
     {
-        $sql ="insert into user(`name`,`password`) values('$name','$pwd')";
+        $key = '';
+        $val = '';
+        foreach ($arr as $item => $value) {
+            $key .= $item . ',';
+            $val .= "'" . $value . "'" . ',';
+        }
+        $sql = "insert into " . $table_name . "(" . trim($key, ',') . ") values(" . trim($val, ',') . ")";
         $res = $pdo->exec($sql);
         return $res;
     }

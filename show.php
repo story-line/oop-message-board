@@ -10,7 +10,7 @@ require "msg.class.php";
 $db = db::GetInstance();
 $pdo = $db->connect_db('test');
 $msg = new msg();
-$data = $msg->findAll($pdo);
+$data = $msg->findAll($pdo, 'messageboard');
 ?>
 <!doctype html>
 <html lang="en">
@@ -53,14 +53,14 @@ $data = $msg->findAll($pdo);
             <td>内容</td>
             <td>操作</td>
         </tr>
-        <?php foreach ($data as $key => $value){?>
+        <?php foreach ($data as $key => $value) { ?>
             <tr>
-                <td><?= $value['title']?></td>
-                <td><?= $value['author']?></td>
-                <td><?= $value['message']?></td>
-                <td><a href="del.php?id=<?= $value['id']?>">删除</a></td>
+                <td><?= $value['title'] ?></td>
+                <td><?= $value['author'] ?></td>
+                <td><?= $value['message'] ?></td>
+                <td><a href="del.php?id=<?= $value['id'] ?>">删除</a></td>
             </tr>
-        <?php }?>
+        <?php } ?>
     </table>
 </center>
 </body>

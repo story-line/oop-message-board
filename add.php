@@ -11,12 +11,11 @@ require "msg.class.php";
 $db = db::GetInstance();
 $pdo = $db->connect_db('test');
 $msg = new msg();
-$title = $_POST['title'];
-$author = $_POST['author'];
-$message = $_POST['message'];
-$data = $msg->add($pdo,$title,$author,$message);
-if($data == 1){
+$arr = $_POST;
+$data = $msg->add($pdo, 'messageboard', $arr);
+//var_dump($data);die;
+if ($data == 1) {
     echo "<script>alert('添加留言成功');location.href='show.php'</script>";
-}else{
+} else {
     echo "<script>alert('添加留言失败');location.href='show.php'</script>";
 }

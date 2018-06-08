@@ -12,9 +12,9 @@ require "msg.class.php";
 $db = db::GetInstance();
 $pdo = $db->connect_db('test');
 $msg = new msg();
-$data = $msg->del($pdo,$id);
-if($data == 1){
+$data = $msg->del($pdo, 'messageboard', $id);
+if ($data == 1) {
     echo "<script>alert('删除成功');location.href='show.php'</script>";
-}else{
+} else {
     echo "<script>alert('删除失败');location.href='show.php'</script>";
 }
